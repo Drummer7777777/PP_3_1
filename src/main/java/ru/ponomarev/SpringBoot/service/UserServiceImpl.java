@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService{
     @Autowired
-    @Qualifier("jpaUserDao")
+    @Qualifier("userDaoImpl")
     private UserDao userDao;
 
     @Transactional
@@ -21,17 +21,18 @@ public class UserServiceImpl implements UserService{
         userDao.add(user);
     }
 
+    @Transactional
     @Override
     public void remove(int id) {
         userDao.remove(id);
     }
 
+    @Transactional
     @Override
     public void edit(User user) {
         userDao.edit(user);
     }
 
-    @Transactional(readOnly = true)
     @Override
     public List<User> listUsers() {
         return userDao.listUsers();
